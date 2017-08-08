@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\FF_contries;
 use Illuminate\Routing\Controller;
 
 class ContriesController extends Controller {
@@ -11,8 +12,11 @@ class ContriesController extends Controller {
 	 * @return Response
 	 */
 	public function index()
+
 	{
-		//
+	    $config['list'] = FF_contries::get()->toArray();
+
+        return view('allList',$config);
 	}
 
 	/**
