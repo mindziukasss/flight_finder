@@ -16,19 +16,12 @@ class ContriesController extends Controller {
     {
         $dataFromModel = new FF_contries();
         $config['tableName'] = $dataFromModel->getTableName();
-//	    $config['list'] = FF_contries::paginate(15)->toArray();
-        $config['list'] = FF_contries::get()->toArray();
-//        dd($config);
+	    $config['list'] = FF_contries::paginate(15)->toArray();
         $config['ignore'] = ['created_at', 'updated_at', 'deleted_at', 'id', 'count'];
         $config['route'] = route('app.contries.create');
         $config['create'] = 'app.contries.create';
         $config['edit'] = 'app.contries.edit';
         $config['delete'] = 'app.contries.destroy';
-
-        if($config['list'] == null )
-        {
-            return redirect()->route('app.contries.create');
-        }
 
         return view('allList',$config);
 	}
