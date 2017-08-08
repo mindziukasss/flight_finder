@@ -12,10 +12,10 @@
 */
 
 //Route::get('/', function () {
-//    return view('welcome');
+//    return view('allList');
 //});
 
-Route::group(['prefix' => '/'], function (){
+Route::group(['prefix' => 'flights'], function (){
     Route::get('/',['as' => 'app.flights.index', 'uses' => 'flightsController@index']);
     Route::get('/create', ['as' => 'app.flights.create', 'uses' => 'flightsController@create']);
     Route::post('/create', [ 'uses' => 'flightsController@store']);
@@ -41,7 +41,7 @@ Route::group(['prefix' => 'airlines'], function (){
 });
 
 
-Route::group(['prefix' => '/airports'], function (){
+Route::group(['prefix' => 'airports'], function (){
     Route::get('/',['as' => 'app.airports.index', 'uses' => 'airportsController@index']);
     Route::get('/create', ['as' => 'app.airports.create', 'uses' => 'airportsController@create']);
     Route::post('/create', [ 'uses' => 'airportsController@store']);
@@ -54,7 +54,7 @@ Route::group(['prefix' => '/airports'], function (){
 });
 
 
-Route::group(['prefix' => '/contries'], function (){
+Route::group(['prefix' => 'contries'], function (){
     Route::get('/',['as' => 'app.contries.index', 'uses' => 'contriesController@index']);
     Route::get('/create', ['as' => 'app.contries.create', 'uses' => 'contriesController@create']);
     Route::post('/create', [ 'uses' => 'contriesController@store']);
