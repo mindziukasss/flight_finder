@@ -84,7 +84,8 @@ class AirportsController extends Controller {
         $config['titleForm'] = $id;
         $config['route'] = route('app.airports.edit', $id);
         $config['back'] = '/airports';
-        $config['record'] = FF_airports::find($id)->toArray();
+        $config['record'] = FF_airports::find($id);
+        $config['record']->pluck('id')->toArray();
         $config['country'] = FF_contries::pluck('original_name', 'id')->toArray();
 
 

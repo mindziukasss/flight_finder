@@ -9,7 +9,7 @@
             {{Form::label('city', 'City')}}
             {{Form::text('city', $record['city'])}}
             {{Form::label('contry_id', 'Country name')}}
-            {{Form::select('contry_id',$country)}}
+            {{Form::select('contry_id',$country, $record['contry_id'])}}
         </div>
         <a class="btn btn-primary" href="{{$back}}">Back</a>
         {{Form::submit(('Save'), ['class' => 'btn btn-success']) }}
