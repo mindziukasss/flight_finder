@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\FF_airlines;
 use Illuminate\Routing\Controller;
 
 class AirlinesController extends Controller {
@@ -12,7 +13,16 @@ class AirlinesController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        $dataFromModel = new FF_airlines();
+        $config['tableName'] = $dataFromModel->getTableName();
+        $config['list'] = FF_airlines::get()->toArray();
+        $config['ignore'] = ['created_at', 'updated_at', 'deleted_at', 'id', 'count'];
+        $config['route'] = route('app.airlines.create');
+        $config['create'] = 'app.airlines.create';
+        $config['edit'] = 'app.airlines.edit';
+        $config['delete'] = 'app.airlines.destroy';
+
+        return view('allList', $config);
 	}
 
 	/**
@@ -23,7 +33,10 @@ class AirlinesController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        $config['titleForm'] = 'New Airline';
+        $config['route'] = route('app.airlines.create');
+        $config['back'] = '/airlines';
+        return view('airlines.create', $config);
 	}
 
 	/**
@@ -34,7 +47,12 @@ class AirlinesController extends Controller {
 	 */
 	public function store()
 	{
-		//
+        $data = request()->all();
+        FF_airlines::create([
+            'name' => $data['name']
+        ]);
+
+        return redirect(route('app.airlines.index'));
 	}
 
 	/**
@@ -58,7 +76,13 @@ class AirlinesController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        $config['id'] = $id;
+        $config['titleForm'] = $id;
+        $config['route'] = route('app.airlines.edit', $id);
+        $config['back'] = '/airlines';
+        $config['record'] = FF_airlines::find($id)->toArray();
+
+        return view('airlines.create', $config);
 	}
 
 	/**
@@ -70,7 +94,15 @@ class AirlinesController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+        $config = FF_airlines::find($id);
+        $data = request()->all();
+
+        $config->update([
+            'name' => $data['name']
+        ]);
+
+
+        return redirect(route('app.airlines.index'));
 	}
 
 	/**
@@ -82,7 +114,8 @@ class AirlinesController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+        FF_airlines::destroy($id);
+        return json_encode(["success" => true, "id" => $id]);
 	}
 
 }
