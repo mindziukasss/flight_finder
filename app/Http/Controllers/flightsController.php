@@ -3,6 +3,7 @@
 use App\Models\FF_airlines;
 use App\Models\FF_airports;
 use App\Models\FF_flights;
+use Carbon\Carbon;
 use Illuminate\Routing\Controller;
 
 class FlightsController extends Controller {
@@ -40,11 +41,10 @@ class FlightsController extends Controller {
         $config['origin'] = FF_airports::pluck('name', 'id')->toArray();
         $config['destination'] = FF_airports::pluck('name', 'id')->toArray();
         $config['airline'] = FF_airlines::pluck('name', 'id')->toArray();
-
-
+        $config['departure'] = Carbon::now()->format('Y-m-d H:i');
+        $config['arrival'] = Carbon::now()->addDays(1)->format('Y-m-d H:i');
         $config['back'] = '/flights';
 
-//        dd($config);
         return view('flights.create', $config);
 	}
 
@@ -56,7 +56,16 @@ class FlightsController extends Controller {
 	 */
 	public function store()
 	{
-		//
+        $data = request()->all();
+        FF_flights::create([
+            'orgin_id' => $data['origin'],
+            'destintation_id' => $data['destination'],
+            'airline_id' => $data['airline'],
+            'departure' => $data['departure'],
+            'arrival' => $data['arrival'],
+        ]);
+
+        return redirect(route('app.flights.index'));
 	}
 
 	/**

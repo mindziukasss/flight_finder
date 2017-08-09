@@ -4,8 +4,7 @@
     @if(isset($record['id']))
         <h2>Edit: {{$record['name']}}</h2>
         <div class="form-group">
-            {{Form::label('contry_id', 'Country name')}}
-            {{Form::select('contry_id',$country)}}
+            
         </div>
         <a class="btn btn-primary" href="{{$back}}">Back</a>
         {{Form::submit(('Save'), ['class' => 'btn btn-success']) }}
@@ -22,21 +21,13 @@
             {{Form::select('airline', $airline)}}
 
 
-            <div class="form-group row">
-                <label for="example-datetime-local-input" class="col-2 col-form-label">Arrival</label>
-                <div class="col-10">
-                    <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00"
-                           id="example-datetime-local-input">
-                </div>
-            </div>
+             {{Form::label('departure', 'Departure')}}
+             {{Form::datetime('departure', $departure)}}
 
-            <div class="form-group row">
-                <label for="example-datetime-local-input" class="col-2 col-form-label">Departure</label>
-                <div class="col-10">
-                    <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00"
-                           id="example-datetime-local-input">
-                </div>
-            </div>
+
+             {{Form::label('arrival', 'Arrival')}}
+             {{Form::datetime('arrival', $arrival)}}
+            
 
 
 
