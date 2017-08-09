@@ -18,5 +18,6 @@
 </body>
 
 @include('scripts')
+@yield('scripts')
 </html>
 

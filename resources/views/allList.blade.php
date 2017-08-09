@@ -7,7 +7,7 @@
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    @foreach($list['data'][0] as $key => $value)
+                    @foreach($list[0] as $key => $value)
                         @if(!in_array($key, $ignore))
                             <th>{{$key}}</th>
                         @endif
@@ -17,7 +17,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($list['data'] as $key => $record)
+                @foreach($list as $key => $record)
                     <tr id="{{$record['id']}}">
                     @foreach($record as $key => $value)
                             @if(!in_array($key, $ignore))

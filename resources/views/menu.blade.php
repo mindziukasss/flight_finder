@@ -6,16 +6,16 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Airlines</a>
+                <a class="nav-link" href="/airlines">Airlines</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Airports</a>
+                <a class="nav-link" href="/airports">Airports</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Countries</a>
+                <a class="nav-link" href="/contries">Countries</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Flights</a>
+                <a class="nav-link" href="/flights">Flights</a>
             </li>
         </ul>
     </div>
