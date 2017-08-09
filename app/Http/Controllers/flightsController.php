@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\FF_airlines;
+use App\Models\FF_airports;
+use App\Models\FF_flights;
 use Illuminate\Routing\Controller;
 
 class FlightsController extends Controller {
@@ -12,7 +15,16 @@ class FlightsController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        $config['list'] = FF_flights::get()->toArray();
+        $dataFromModel = new FF_flights();
+        $config['tableName'] = $dataFromModel->getTableName();
+        $config['ignore'] = ['created_at', 'updated_at', 'deleted_at', 'id', 'count'];
+        $config['route'] = route('app.flights.create');
+        $config['create'] = 'app.flights.create';
+        $config['edit'] = 'app.flights.edit';
+        $config['delete'] = 'app.flights.destroy';
+
+        return view('allList', $config);
 	}
 
 	/**
@@ -23,7 +35,17 @@ class FlightsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        $config['titleForm'] = 'New Flights';
+        $config['route'] = route('app.flights.create');
+        $config['origin'] = FF_airports::pluck('name', 'id')->toArray();
+        $config['destination'] = FF_airports::pluck('name', 'id')->toArray();
+        $config['airline'] = FF_airlines::pluck('name', 'id')->toArray();
+
+
+        $config['back'] = '/flights';
+
+//        dd($config);
+        return view('flights.create', $config);
 	}
 
 	/**
