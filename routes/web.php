@@ -15,6 +15,13 @@
 //    return view('allList');
 //});
 
+
+
+Route::group(['prefix' => 'generate'], function () {
+    Route::get('/airports', ['uses' => 'FF_fakerDataController@generateAirports']);
+
+});
+
 Route::group(['prefix' => 'flights'], function (){
     Route::get('/',['as' => 'app.flights.index', 'uses' => 'flightsController@index']);
     Route::get('/create', ['as' => 'app.flights.create', 'uses' => 'flightsController@create']);
