@@ -43,7 +43,7 @@
 
             {{Form::label('arrival', 'Arrival')}}
             {{Form::datetime('arrival', $arrival)}}
-            
+
         </div>
         <a class="btn btn-primary" href="{{$back}}">Back</a>
         {{Form::submit(('Save'), ['class' => 'btn btn-success']) }}
