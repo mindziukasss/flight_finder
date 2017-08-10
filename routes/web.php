@@ -11,9 +11,9 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('allList');
-//});
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
 

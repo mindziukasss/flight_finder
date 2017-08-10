@@ -18,12 +18,27 @@
                 </thead>
                 <tbody>
                 @foreach($list as $key => $record)
+
                     <tr id="{{$record['id']}}">
                         @foreach($record as $key => $value)
                             @if(!in_array($key, $ignore))
-                                <td>
-                                    {{$value}}
-                                </td>
+                                @if($key == 'origin_airport')
+                                    <td>
+                                        {{$value['name']}}(Airport),
+                                        {{$value['city']}}(City),
+                                        {{$value['contry_id']}}(Country code)
+                                    </td>
+                                @elseif($key == 'destination_airport')
+                                    <td>
+                                        {{$value['name']}}(Airport),
+                                        {{$value['city']}}(City),
+                                        {{$value['contry_id']}}(Country code)
+                                    </td>
+                                @elseif($key == 'airline')
+                                    <td>{{$value['name']}}</td>
+                                @else
+                                    <td>{{$value}}</td>
+                                @endif
                             @endif
                         @endforeach
                         <td>
@@ -40,8 +55,6 @@
                 @endforeach
                 </tbody>
             </table>
-            {{--{{dd($list)}}}--}}
-            {{--{{ $list->link() }}--}}
         @else
             <h2>Data not find</h2>
         @endif
