@@ -39,7 +39,7 @@
 
             {{Form::label('airline', 'Airline')}}
             {{Form::select('airline', $airline)}}
-            
+
              {{Form::label('departure', 'Departure')}}
              {{Form::datetime('departure', $departure)}}
 
