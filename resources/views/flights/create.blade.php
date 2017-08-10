@@ -21,9 +21,6 @@
             {{Form::datetime('arrival', $record['arrival'])}}
 
 
-
-
-
         </div>
         <a class="btn btn-primary" href="{{$back}}">Back</a>
         {{Form::submit(('Save'), ['class' => 'btn btn-success']) }}
@@ -40,16 +37,13 @@
             {{Form::label('airline', 'Airline')}}
             {{Form::select('airline', $airline)}}
 
-             {{Form::label('departure', 'Departure')}}
-             {{Form::datetime('departure', $departure)}}
+            {{Form::label('departure', 'Departure')}}
+            {{Form::datetime('departure', $departure)}}
 
 
-             {{Form::label('arrival', 'Arrival')}}
-             {{Form::datetime('arrival', $arrival)}}
+            {{Form::label('arrival', 'Arrival')}}
+            {{Form::datetime('arrival', $arrival)}}
             
-
-
-
         </div>
         <a class="btn btn-primary" href="{{$back}}">Back</a>
         {{Form::submit(('Save'), ['class' => 'btn btn-success']) }}

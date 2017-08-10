@@ -19,7 +19,7 @@
                 <tbody>
                 @foreach($list as $key => $record)
                     <tr id="{{$record['id']}}">
-                    @foreach($record as $key => $value)
+                        @foreach($record as $key => $value)
                             @if(!in_array($key, $ignore))
                                 <td>
                                     {{$value}}

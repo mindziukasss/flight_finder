@@ -19,7 +19,7 @@
 
 Route::group(['prefix' => 'generate'], function () {
     Route::get('/airports', ['uses' => 'FF_fakerDataController@generateAirports']);
-
+    Route::get('/flights', ['uses' => 'FF_fakerDataController@generateFlights']);
 });
 
 Route::group(['prefix' => 'flights'], function (){
