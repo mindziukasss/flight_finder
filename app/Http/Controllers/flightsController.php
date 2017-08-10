@@ -77,7 +77,7 @@ class FlightsController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+
 	}
 
 	/**
@@ -89,7 +89,20 @@ class FlightsController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        $config['id'] = $id;
+        $config['titleForm'] = $id;
+        $config['route'] = route('app.flights.edit', $id);
+        $config['back'] = '/flights';
+        $config['record'] = FF_flights::find($id);
+        $config['record']->pluck('id')->toArray();
+        $config['origin'] = FF_airports::pluck('name', 'id')->toArray();
+        $config['destination'] = FF_airports::pluck('name', 'id')->toArray();
+        $config['airline'] = FF_airlines::pluck('name', 'id')->toArray();
+
+
+
+
+        return view('flights.create', $config);
 	}
 
 	/**
@@ -101,7 +114,20 @@ class FlightsController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+		$config = FF_flights::find($id);
+		$data = request()->all();
+
+		$config->update([
+
+            'orgin_id' => $data['origin'],
+            'destintation_id' => $data['destination'],
+            'airline_id' => $data['airline'],
+            'departure' => $data['departure'],
+            'arrival' => $data['arrival'],
+
+        ]);
+
+        return redirect(route('app.flights.index'));
 	}
 
 	/**
@@ -113,7 +139,8 @@ class FlightsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+        FF_flights::destroy($id);
+        return json_encode(["success" => true, "id" => $id]);
 	}
 
 }
