@@ -27,6 +27,7 @@
         </div>
         <a class="btn btn-primary" href="{{$back}}">Back</a>
         {{Form::submit(('Save'), ['class' => 'btn btn-success']) }}
+
     @else
         <h2>{{$titleForm}}</h2>
         <div class="form-group">
@@ -38,8 +39,7 @@
 
             {{Form::label('airline', 'Airline')}}
             {{Form::select('airline', $airline)}}
-
-
+            
              {{Form::label('departure', 'Departure')}}
              {{Form::datetime('departure', $departure)}}
 
@@ -53,7 +53,11 @@
         </div>
         <a class="btn btn-primary" href="{{$back}}">Back</a>
         {{Form::submit(('Save'), ['class' => 'btn btn-success']) }}
+
+        {!! Form::close() !!}
+
     @endif
 
 @endsection
+
 
