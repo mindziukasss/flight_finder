@@ -82,6 +82,30 @@
                     Flight finder
                 </div>
 
+
+                <div class="form-group">
+
+                    {{Form::label('from', 'From')}}
+                    {{Form::select('origin',$origin)}}
+
+                    {{Form::label('to', 'To')}}
+                    {{Form::select('destination',$destination)}}
+
+                    {{Form::label('date', 'Date')}}
+                    {{Form::date('departure', $date)}}
+
+                    {{--<div class="form-group">--}}
+                        {{--<label for="example-datetime-local-input">Date</label>--}}
+                        {{--<input class="form-control" type="date" value="{{$date }}" name="date">--}}
+                    {{--</div>--}}
+
+                </div>
+
+                {{Form::submit(('Search')) }}
+
+                {!! Form::close() !!}
+
+
             </div>
         </div>
     </body>

@@ -11,9 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/',['as' => 'app.search.index', 'uses' => 'SearchFlightsController@index']);
+
 
 
 
