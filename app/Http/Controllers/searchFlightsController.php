@@ -15,16 +15,34 @@ class SearchFlightsController extends Controller {
 	 */
 	public function index()
 	{
-
+        $config['route'] = route('app.search.index');
         $config['origin'] = FF_airports::pluck('name', 'id')->toArray();
         $config['destination'] = FF_airports::pluck('name', 'id')->toArray();
         $config['date'] = Carbon::now()->format('Y-m-d');
+        $config['ignore'] = ['created_at', 'updated_at', 'deleted_at', 'id', 'count', 'airline_id', 'destintation_id', 'orgin_id' ];
 
-//        $config['flights']= FF_flights::take(10)->get()->toArray();
+
+        $data = request()->all();
+
+
+        if($data){
+            $config['flights']= $this->getFlights($data);
+
+        };
+
 //        dd($config);
-
 	    return view('welcome', $config);
 	}
+
+
+	public function getFlights($data){
+
+	   return FF_flights::where('orgin_id', $data['from'])
+            ->where('destintation_id',$data['to'] )
+            ->where('departure','>=', $data['date'].' 23:59:59')
+            ->get()->toArray();
+
+    }
 
 	/**
 	 * Show the form for creating a new resource.
