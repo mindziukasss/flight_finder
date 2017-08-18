@@ -7,7 +7,7 @@
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    @foreach($list[0] as $key => $value)
+                    @foreach($list['data'][0] as $key => $value)
                         @if(!in_array($key, $ignore))
                             <th>{{$key}}</th>
                         @endif
@@ -17,8 +17,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($list as $key => $record)
-
+                @foreach($list['data'] as $key => $record)
                     <tr id="{{$record['id']}}">
                         @foreach($record as $key => $value)
                             @if(!in_array($key, $ignore))
@@ -55,6 +54,25 @@
                 @endforeach
                 </tbody>
             </table>
+            @foreach($list as $key => $value)
+                {{--{{dd($list['last_page'])}}--}}
+            @if($key == 'next_page_url')
+                @for($x=0; $value > $x; $x++ )
+                        $value += $x;
+                    @endfor
+                    {{dd($x)}}
+                    <a  href='{{ $value }}'>Next</a>
+                    <ul class="pagination">
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li class="disabled"><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                    </ul>
+                     {{--{{dd($value)}}--}}
+                @endif
+            @endforeach
+                        {{--{{$list->links()}}--}}
         @else
             <h2>Data not find</h2>
         @endif
