@@ -16,7 +16,7 @@ class FlightsController extends Controller {
 	 */
 	public function index()
 	{
-        $config['list'] = FF_flights::get()->toArray();
+        $config['list'] = FF_flights::paginate(20)->toArray();;
         $dataFromModel = new FF_flights();
         $config['tableName'] = $dataFromModel->getTableName();
         $config['ignore'] = ['created_at', 'updated_at', 'deleted_at', 'id', 'count', 'airline_id', 'destintation_id', 'orgin_id' ];

@@ -17,8 +17,6 @@ class AirportsController extends Controller {
         $dataFromModel = new FF_airports();
         $config['tableName'] = $dataFromModel->getTableName();
         $config['list'] = FF_airports::paginate(20)->toArray();
-//        $config['list'] = FF_airports::get()->toArray();
-
         $config['ignore'] = ['created_at', 'updated_at', 'deleted_at', 'id', 'count'];
         $config['route'] = route('app.airports.create');
         $config['create'] = 'app.airports.create';

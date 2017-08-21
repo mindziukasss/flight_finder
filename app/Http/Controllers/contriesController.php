@@ -17,7 +17,7 @@ class ContriesController extends Controller
     {
         $dataFromModel = new FF_contries();
         $config['tableName'] = $dataFromModel->getTableName();
-        $config['list'] = FF_contries::get()->toArray();
+        $config['list'] = FF_contries::paginate(20)->toArray();
         $config['ignore'] = ['created_at', 'updated_at', 'deleted_at', 'id', 'count'];
         $config['route'] = route('app.contries.create');
         $config['create'] = 'app.contries.create';
