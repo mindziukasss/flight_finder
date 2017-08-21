@@ -58,6 +58,7 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     @if(($list["current_page"]) === 1)
+                        <li class="disabled-link"><a id="hidden">Previous</a></li>
                     @else
                         <li class="page-item"><a class="page-link"
                                                  href="{{route('app.airports.index')}}?page={{$list["current_page"]-1}}">Previous</a>
@@ -71,6 +72,7 @@
                     @endfor
 
                     @if(($list["current_page"]) === $list['last_page'])
+                        <li class="disabled-link"><a id="hidden">Next</a></li>
                     @else
                         <li class="page-item"><a class="page-link"
                                                  href="{{route('app.airports.index')}}?page={{$list["current_page"]+1}}">Next</a>
@@ -108,5 +110,6 @@
             });
         }
 
+        document.getElementById('hidden').style.visibility='hidden';
     </script>
 @endsection
