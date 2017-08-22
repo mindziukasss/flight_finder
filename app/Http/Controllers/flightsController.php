@@ -24,6 +24,7 @@ class FlightsController extends Controller {
         $config['create'] = 'app.flights.create';
         $config['edit'] = 'app.flights.edit';
         $config['delete'] = 'app.flights.destroy';
+        $config['paginate']= FF_flights::paginate(20);
 
         return view('allList', $config);
 	}

@@ -1,13 +1,13 @@
 @extends('core')
 @section('content')
-    <div class="container">
+    <div class="container" xmlns="http://www.w3.org/1999/html">
         <h2>{{ucfirst($tableName)}}s table</h2>
         <a href="{{ route($create) }}">Create new {{$tableName}}</a>
         @if(sizeof($list)>0)
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    @foreach($list['data'][0] as $key => $value)
+                    @foreach($list[0] as $key => $value)
                         @if(!in_array($key, $ignore))
                             <th>{{$key}}</th>
                         @endif
@@ -17,7 +17,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($list['data'] as $key => $record)
+                @foreach($list as $key => $record)
                     <tr id="{{$record['id']}}">
                         @foreach($record as $key => $value)
                             @if(!in_array($key, $ignore))
@@ -54,31 +54,8 @@
                 @endforeach
                 </tbody>
             </table>
-
             <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    @if(($list["current_page"]) === 1)
-                        <li class="disabled-link"><a id="hidden">Previous</a></li>
-                    @else
-                        <li class="page-item"><a class="page-link"
-                                                 href="{{route('app.airports.index')}}?page={{$list["current_page"]-1}}">Previous</a>
-                        </li>
-                    @endif
-
-                    @for($i=1; $i<=$list['last_page']; $i++)
-                        <li class="page-item"><a class="page-link"
-                                                 href="{{route('app.airports.index')}}?page={{$i}}">{{$i}}</a>
-                        </li>
-                    @endfor
-
-                    @if(($list["current_page"]) === $list['last_page'])
-                        <li class="disabled-link"><a id="hidden">Next</a></li>
-                    @else
-                        <li class="page-item"><a class="page-link"
-                                                 href="{{route('app.airports.index')}}?page={{$list["current_page"]+1}}">Next</a>
-                        </li>
-                    @endif
-                </ul>
+                {!! $paginate->links()!!}
             </nav>
         @else
             <h2>Data not find</h2>
@@ -110,6 +87,5 @@
             });
         }
 
-        document.getElementById('hidden').style.visibility='hidden';
     </script>
 @endsection

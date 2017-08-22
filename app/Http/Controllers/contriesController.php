@@ -23,6 +23,7 @@ class ContriesController extends Controller
         $config['create'] = 'app.contries.create';
         $config['edit'] = 'app.contries.edit';
         $config['delete'] = 'app.contries.destroy';
+        $config['paginate']= FF_contries::paginate(20);
 
         return view('allList', $config);
     }
